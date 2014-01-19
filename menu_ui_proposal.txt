@@ -1,0 +1,172 @@
+I'd like to reinforce the fact that this is a tentative suggestion only and is 
+in no way final. It probably fails to account for all possible scenarios, 
+virtual or real.
+
+After selecting the restaurant and table, the next screen should focus on the 
+selecting and optionally sharing of menu items. I propose that this screen 
+be split into three sections:
+1. who's currently on your table
+2. what items you have selected
+3. the menu
+
+Section 1 will be a horizontal bar at the top of the screen containing the 
+avatars of the people currently registered to your table. The icons should 
+be horizontally scrollable if there are too many icons to fit on the screen.
+Any new entries should automatically be appended to the list. If there is no 
+image to use as an avatar, some other indicator such as name should be used.
+
+Section 2 will be another horizontal icon bar below section 1 but instead will 
+contain the items the user has already selected. When empty, it should 
+indicate that this is where menu items should be placed. This bar can also be 
+scrolled. There should also be some indication of the total price of the 
+selected items, taking into account the split cost of shared items. Perhaps it 
+could indicate the cost of each item as well if it doesn't clutter everything.
+
+Section 3 will contain the menu itself, a mosaic of images of each item on the 
+menu. The items should be sorted by category (eg. main course, desert, drinks).
+Each category will have its own page, themed by a colour (eg. red for main 
+courses) and these pages can be switched by scrolling the screen left/right or 
+via coloured tabs along the bottom. All icons of items belonging to a certain 
+category should be bordered by the same colour (eg. a steak has a red border).
+Scrolling up/down will reveal any menu items that can't fit in one screen. 
+Eventually something should indicate that the bottom of the page has been 
+reached. Section 3 will be larger than sections 1 and 2 combined.
+
+Above section 1 will be a confirm order button that dims whenever 
+anything is dragged, perhaps even a pay button as well noted in i).
+
+Concerning layout:
+The flow of the app would probably be from section 3 to section 2 and sometimes 
+to section 1, then the buttons above 1. However, to make it more natural, it 
+may be better to have section 3 on top (then the category tabs will be on top, 
+then section 2 under it, then section 1, then the order and payment buttons. 
+This would make more sense since we tend to go from top to bottom. The order 
+and payment buttons should not be put near something which is often pressed 
+to avoid accidental presses, so section 1 is chosen since it is probably the 
+least used section.
+
+We probably can't fit the full title of each coloured tab in section 3, so it 
+would probably be best to only show the active tabs title and leave common 
+sense and memory to figure out the rest of the colours (eg. desert is to the 
+left of main course).
+
+The following will detail how actions are performed:
+
+Notes:
+"Item" refers to menu items (individual dishes, drinks).
+
+"Dragging"/"holding" an item will be done by pressing and holding over an item 
+until it 'frees' itself and then can be moved by dragging it (this is identical 
+to how Android handles its app icons). This is so flicking across the screen 
+can be used to scroll without the need of scroll bars while still keeping the 
+drag and drop.
+
+Possibly, "dimmed" sections could block the movement of the dragged item to 
+reinforce the idea that it can't be placed there (at no point is section 2 
+exclusively dimmed, so it should not make any drag operation impossible).
+
+If anything is held, any popups should wait until nothing is held before 
+showing.
+
+a) Selecting an item
+Performed by dragging an item from section 3 to section 2. When an item is 
+'held', section 1 should dim, showing where the user should can drag the 
+item.
+
+b) Removing an item
+Performed by dragging an item back from section 2 to section 3. When an item 
+is held, section 3 should show a trash can icon and "cancel"/"remove" etc. 
+Section 1 should not dim for e).
+
+c) Rearranging items/avatars
+Performed by dragging an item from section 1 or 2 to another position in 
+section 1 or 2 respectively. When dragging an avatar (from section 1), all 
+other sections should dim.
+
+d) Requesting further details
+Performed by tapping any menu item in any section. Opens up a popup that fills
+section 3 (or the entire screen) with details and a larger image. Tapping 
+outside the popup/on a cross at the top right should exit. Details should 
+include further images, the cost, the nutritional information (at least basics 
+like calorie count), 'flavour' text and if shared, all people that specific 
+item is shared with. Note that if two of the same item are ordered, they are 
+independent of each other and as such, one being shared is independent of the 
+other being shared.
+
+Note that options (mentioned in further considerations below) or shared users 
+are only relevant if the item is already sitting in section 2. It should 
+somehow indicate that options are available for the item.
+
+e) Sharing an item
+Performed by dragging a menu item from section 2 to section 1. Note that 
+section 1 is not dimmed in b) when an item is dragged from section 2. When the 
+item is dragged over section 1, the avatar beneath should enlarge/highlight. 
+If the avatar in question is off the screen, moving the item to the edges of 
+the screen should scroll it. Once the item is released, it has entered a 
+'share pending' state.
+
+In the 'share pending' state, a request to share is sent to the other person. 
+This will be in the form of a popup asking whether the user wants to share 
+the specified dish with a specified person (once again, the picture of the 
+food can be tapped to show further details). If the person accepts, that item 
+will be in a 'shared' state, otherwise it will remain unshared and return to 
+its original state of only being ordered by the original person. Once shared, 
+the item will appear on both user's section 2.
+
+Sharing one item with one other person twice is probably human error and as 
+such a popup should indicate that nothing has happened and the dish is 
+already shared with the target user.
+
+Sharing an already shared item with someone else will send a share request 
+to said someone else, with avatars of all other people already sharing the 
+item and the item in question. if that someone else accepts it, the item 
+is shared with one more person.
+
+f) Viewing who shared the dish with you
+Once an item is in a 'shared' state, the item will have some indicator that 
+it's shared with one or more people. Tapping a shared icon will produce a 
+popup that not only contains further details as in d), but who the item is 
+shared with.
+
+g) Cancelling a shared item
+Done as normal in b).
+
+h) Making the order
+Performed by pressing the 'confirm order' button above section 1. It should 
+then switch to a screen with a list of all the items that you ordered, and if 
+shared, the people who you are sharing the items with along with a price tag.
+Then, another confirmation is required before the order is placed at the bottom 
+of this screen. After the second confirmation, it returns to the menu screen 
+ready to accept more orders. Items that were already ordered remain in section 
+2 but are greyed out or somehow indicated that they can't be removed*. If a 
+shared item is confirmed then this item will appear greyed out to all relevant 
+people automatically. If some user has 'held' the shared item, it will be 
+automatically dropped back in place. Any further items added to section 2 will 
+be placed to the left of the already ordered items (no matter what).
+
+*Unless there is some way for the restaurant to indicate when the order can't 
+be cancelled, in which it would indicate that it's 'ordered' first, then after 
+it can't be cancelled, it will appear 'locked out'. This way, the app is more 
+forgiving.
+
+i) The bill
+I'm not sure when or how the user confirms the final payment, after all orders 
+are complete and any items 'on the house' have been indicated and deducted from 
+the total cost. Perhaps there should be another button above the confirm order 
+button that once pressed, shows the detailed cheque (as well as an option to 
+save the cheque), then asks for a final payment confirmation (so any mistakes 
+can be found and dealt with) and then waits for all other users at the table 
+to confirm their final payments before sending the payment (securely). Once 
+again, this process can be cancelled at any point before the payment is sent.
+
+Further considerations:
+- Options like "ketchup" for fries or "milk" for coffee in the further details
+section of the item.
+- Combo icons for meal combos, with the further details containing the choices 
+such as whether you'd like cola or pepsi with your combo.
+
+Unnecessary but nice features:
+- Methods to request other services from the restaurant such as asking for a 
+water refill or more BBQ sauce.
+- An option to give feedback to the restaurant and/or write a review on some 
+popular restaurant review site after payment is made.
